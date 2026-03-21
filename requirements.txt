@@ -1,0 +1,9 @@
+# AutoCyberChef dependencies
+# All core functionality uses only the Python standard library.
+# The packages below are optional extras for development and testing.
+
+# Testing
+pytest>=7.0.0
+
+# Optional: coloured output on Windows (graceful fallback if not installed)
+# colorama>=0.4.6
