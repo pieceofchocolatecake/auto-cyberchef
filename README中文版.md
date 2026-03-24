@@ -67,6 +67,7 @@ python main.py --version
 |---|---|
 | **自动识别编码** | 识别 Base64、Hex、Binary、URL、ROT13、Morse、HTML、Caesar、Base32 共 9 种格式 |
 | **自动多层解码** | 自动剥离最多 10 层嵌套编码 |
+| **编码功能** | 支持将明文编码为 Base64、Base32、Hex、Binary、URL、HTML、ROT13、Morse 格式 |
 | **交互式 Shell** | 支持历史命令记录，↑↓ 方向键翻历史 |
 | **批量文件解码** | 对文件每一行自动识别并解码 |
 | **暴力解码模式** | 同时尝试所有解码器，汇总展示结果 |
@@ -87,6 +88,10 @@ python main.py shell
 autochef > decode SGVsbG8=
   Detected: Base64
   Result:   Hello
+
+autochef > encode Hello -e base64
+  Encoding: base64
+  Result:   SGVsbG8=
 
 autochef > detect 48656c6c6f
   Possible encodings:
@@ -132,6 +137,33 @@ python main.py decode SGVsbG8= --json
 ```
 Detected encoding: Base64
 Decoded result: Hello
+```
+
+---
+
+#### `encode` — 编码字符串
+
+```bash
+# 将明文编码为指定格式
+python main.py encode "Hello" -e base64
+python main.py encode "Hello" -e hex
+python main.py encode "Hello World" -e morse
+python main.py encode "Hello" -e binary
+python main.py encode "Hello World!" -e url
+python main.py encode "<b>Hello</b>" -e html
+python main.py encode "Hello" -e rot13
+
+# 输出 JSON 格式
+python main.py encode "Hello" -e base64 --json
+```
+
+输出示例：
+```
+Encoded [base64]:
+SGVsbG8=
+
+Encoded [morse]:
+.... . .-.. .-.. --- / .-- --- .-. .-.. -..
 ```
 
 ---
